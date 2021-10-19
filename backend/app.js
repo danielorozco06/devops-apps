@@ -6,7 +6,7 @@ var express = require('express'),
 mongoose.Promise = global.Promise;
 
 //URI: mongodb://$dataBaseContainer:27017/mean
-mongoose.connect('mongodb://devopsapps_database_1:27017/mean', { useNewUrlParser: true }).then(
+mongoose.connect('mongodb://devops-database:27017/mean', { useNewUrlParser: true }).then(
   () => { console.log('Database is connected') },
   err => { console.log('Can not connect to the database' + err) });
 
