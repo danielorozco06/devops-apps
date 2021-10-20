@@ -5,7 +5,7 @@ var express = require('express'),
   mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-//URI: mongodb://$dataBaseContainer:27017/mean OR mongodb://$serviceDataBase:27017/mean
+//URI: mongodb://$serviceDataBase:27017/mean
 mongoose.connect('mongodb://database:27017/mean', { useNewUrlParser: true }).then(
   () => { console.log('Database is connected') },
   err => { console.log('Can not connect to the database' + err) });

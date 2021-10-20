@@ -7,11 +7,12 @@ import swal from 'sweetalert2';
 })
 export class UserService {
 	url = 'http://localhost:3000/user';
+	// url = 'http://loadbalfixeddanoro06-f8762e6a607c26b9.elb.us-east-1.amazonaws.com:3000/user';
 
 	constructor(private http: HttpClient) { }
 
 	addUser(user) {
-		return this.http.post(this.url+'/add', user);
+		return this.http.post(this.url + '/add', user);
 	}
 
 	getUser() {
@@ -19,15 +20,15 @@ export class UserService {
 	}
 
 	editUser(id) {
-		return this.http.get(this.url+'/edit/'+id);
+		return this.http.get(this.url + '/edit/' + id);
 	}
 
 	updateUser(id, user) {
-		return this.http.post(this.url+'/update/'+id, user);
+		return this.http.post(this.url + '/update/' + id, user);
 	}
 
 	deleteUser(id) {
-		return this.http.get(this.url+'/delete/'+id);
+		return this.http.get(this.url + '/delete/' + id);
 	}
 
 	alert(mssg, status) {

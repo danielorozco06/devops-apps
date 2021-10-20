@@ -1,7 +1,7 @@
 version: '2' # specify docker-compose version
 
-# Define the services/containers to be run
-services:
+# x-aws-loadbalancer: "loadBalFixeddanoro06"
+services: # Define the services/containers to be run
   database: # name of the third service
     image: mongo # specify image to build container from
     container_name: devops-database #Name of container
@@ -14,8 +14,6 @@ services:
     container_name: devops-frontend #Name of container
     ports:
       - "4200:4200" # specify port forewarding
-    depends_on: 
-      - "database"
   
   express: #name of the second service
     build: backend # specify the directory of the Dockerfile
@@ -24,7 +22,6 @@ services:
     ports:
       - "3000:3000" #specify ports forewarding
     depends_on:
-      - "angular" #Backend needs the database is running first
-    command: ["wait-for-it", "angular:4200", "--strict", "--timeout=300", "--", "node", "app.js"]
+      - "database" #Backend needs the database is running first
     links:
       - database
