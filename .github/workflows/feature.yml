@@ -1,4 +1,4 @@
-name: Deploy to Firebase DEV on push
+name: Pipeline CI
 "on":
   push:
     branches:
@@ -18,10 +18,12 @@ jobs:
       
       - name: Install dependencies on Frontend
         working-directory: ./frontend
+        run: pwd
         run: npm install
 
       - name: Install dependencies on Backend
         working-directory: ./backend
+        run: pwd
         run: npm install
 
       - name: Login to Docker Hub
