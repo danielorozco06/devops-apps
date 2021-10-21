@@ -12,31 +12,31 @@ jobs:
       - name: Checkout repository files
         uses: actions/checkout@v2
 
-      - name: Install node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 12.x
+      # - name: Install node
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: 12.x
       
-      - name: Install dependencies on Frontend
-        working-directory: ./frontend
-        run: |
-          pwd
-          npm install
+      # - name: Install dependencies on Frontend
+      #   working-directory: ./frontend
+      #   run: |
+      #     pwd
+      #     npm install
 
-      - name: Install dependencies on Backend
-        working-directory: ./backend
-        run: |
-          pwd
-          npm install
+      # - name: Install dependencies on Backend
+      #   working-directory: ./backend
+      #   run: |
+      #     pwd
+      #     npm install
 
-  Docker:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setting Docker
-        uses: docker-practice/actions-setup-docker@master
-        with:
-          docker_version: "20.10.9"
-          docker_channel: stable
+  # Docker:
+  #   runs-on: ubuntu-latest
+  #   steps:
+      # - name: Setting Docker
+      #   uses: docker-practice/actions-setup-docker@master
+      #   with:
+      #     docker_version: "20.10.9"
+      #     docker_channel: stable
 
       - name: Docker run
         run: |
