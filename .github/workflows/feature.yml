@@ -24,12 +24,7 @@ jobs:
 
       - name: Build Docker images
         run: |
-          docker compose build
-
-      - name: Docker tag images
-        run: |
-          docker tag danoro06/devops-frontend danoro06/devops-frontend:dev
-          docker tag danoro06/devops-backend danoro06/devops-backend:dev
+          docker compose -f docker-compose.yml build
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -39,4 +34,4 @@ jobs:
 
       - name: Push Docker images to Docker Hub
         run: |
-          docker compose push
+          docker compose -f docker-compose.yml push

@@ -10,14 +10,14 @@ services: # Define the services/containers to be run
 
   angular: # name of the first service
     build: frontend # specify the directory of the Dockerfile
-    image: danoro06/devops-frontend #Name of the image created
+    image: danoro06/devops-frontend:dev #Name of the image created
     container_name: devops-frontend #Name of container
     ports:
       - "4200:4200" # specify port forewarding
   
   express: #name of the second service
     build: backend # specify the directory of the Dockerfile
-    image: danoro06/devops-backend #Name of the image created
+    image: danoro06/devops-backend:dev #Name of the image created
     container_name: devops-backend #Name of container
     ports:
       - "3000:3000" #specify ports forewarding
