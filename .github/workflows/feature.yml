@@ -6,32 +6,11 @@ name: Pipeline CI
       - "feature/**"
 
 jobs:
-  Node:
+  PipelineCI:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository files
         uses: actions/checkout@v2
-
-      # - name: Install node
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: 12.x
-      
-      # - name: Install dependencies on Frontend
-      #   working-directory: ./frontend
-      #   run: |
-      #     pwd
-      #     npm install
-
-      # - name: Install dependencies on Backend
-      #   working-directory: ./backend
-      #   run: |
-      #     pwd
-      #     npm install
-
-  # Docker:
-  #   runs-on: ubuntu-latest
-  #   steps:
 
       # Docker is preinstalled in remote server
       - name: Docker version 
@@ -46,6 +25,11 @@ jobs:
       - name: Build Docker images
         run: |
           docker compose build
+
+      - name: Docker tag images
+        run: |
+          docker tag danoro06/devops-frontend danoro06/devops-frontend:dev
+          docker tag danoro06/devops-backend danoro06/devops-backend:dev
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
