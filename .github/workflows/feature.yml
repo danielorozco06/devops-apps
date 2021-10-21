@@ -34,10 +34,14 @@ jobs:
     steps:
       - name: Setting Docker
         uses: docker-practice/actions-setup-docker@master
+        with:
+          docker_version: "20.10.9"
+          docker_channel: stable
+
+      - name: Docker run
         run: |
-          set -x
           docker version
-          docker run --rm hello-world
+          docker run hello-world
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
