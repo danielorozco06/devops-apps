@@ -40,7 +40,7 @@ jobs:
 
       - name: Docker context use myecscontext (DEV)
         run: |
-          echo "docker context use myecscontext" (DEV)
+          echo "docker context use myecscontext"
 
       - name: Deploy changes on AWS ECS (DEV)
         run: |
