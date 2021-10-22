@@ -3,7 +3,7 @@ name: Pipeline CI/CD
 "on":
   push:
     branches:
-      - "feature/**"
+      - "trunk"
 
 jobs:
   PipelineCI:
@@ -14,7 +14,7 @@ jobs:
 
       - name: Build Docker images
         run: |
-          docker compose -f docker-compose.yml build
+          docker compose -f docker-compose-pdn.yml build
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -24,13 +24,16 @@ jobs:
 
       - name: Push Docker images to Docker Hub
         run: |
-          docker compose -f docker-compose.yml push
+          docker compose -f docker-compose-pdn.yml push
 
-      - name: Install Docker Compose CLI to enable commands on AWS ECS
+  PipelineCD:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Docker Compose CLI to enable commands on AWS ECS (PDN)
         run: |
           curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh
 
-      - name: Create Docker context that point to AWS account
+      - name: Create Docker context that point to AWS account (PDN)
         run: |
           docker context create ecs myecscontext --from-env
         env:
@@ -38,29 +41,13 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
-      - name: Docker context use myecscontext
+      - name: Docker context use myecscontext (PDN)
         run: |
           docker context use myecscontext
 
-      - name: Deploy changes on AWS ECS
+      - name: Deploy changes on AWS ECS (PDN)
         run: |
           docker compose up
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-
-      - name: Check the state of the services on AWS ECS
-        run: |
-          docker compose ps
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-
-      - name: Retrieve logs from the AWS ECS containers
-        run: |
-          docker compose logs
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
