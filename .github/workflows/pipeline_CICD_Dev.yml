@@ -44,4 +44,4 @@ jobs:
 
       - name: Deploy changes on AWS ECS (DEV)
         run: |
-          echo "docker compose up"
+          echo "docker compose -f docker-compose.yml up"
