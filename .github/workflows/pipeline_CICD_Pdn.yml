@@ -1,4 +1,4 @@
-name: Pipeline CI/CD
+name: Pipeline CI/CD PDN
 
 "on":
   push:
@@ -48,7 +48,7 @@ jobs:
 
       - name: Deploy changes on AWS ECS (PDN)
         run: |
-          docker compose up
+          docker compose -f docker-compose-pdn.yml up
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
