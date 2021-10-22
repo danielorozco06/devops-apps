@@ -6,7 +6,7 @@ import swal from 'sweetalert2';
 	providedIn: 'root'
 })
 export class UserService {
-	base = 'devop-LoadB-4188S1IT247C-2cc64f579fd67f08.elb.us-east-1.amazonaws.com' //or localhost
+	base = 'devop-LoadB-1TUUOBFW2QXPM-5f0ebd3432bde67f.elb.us-east-1.amazonaws.com' //or localhost
 	url = 'http://' + this.base + ':3000/user';
 
 	constructor(private http: HttpClient) { }
