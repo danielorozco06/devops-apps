@@ -6,8 +6,8 @@ import swal from 'sweetalert2';
 	providedIn: 'root'
 })
 export class UserService {
-	url = 'http://localhost:3000/user';
-	// url = 'http://loadbalfixeddanoro06-f8762e6a607c26b9.elb.us-east-1.amazonaws.com:3000/user';
+	base = 'devop-LoadB-4188S1IT247C-2cc64f579fd67f08.elb.us-east-1.amazonaws.com' //or localhost
+	url = 'http://' + this.base + ':3000/user';
 
 	constructor(private http: HttpClient) { }
 
