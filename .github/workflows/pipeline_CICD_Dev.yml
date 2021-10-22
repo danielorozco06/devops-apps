@@ -27,6 +27,7 @@ jobs:
           docker compose -f docker-compose.yml push
 
   PipelineCD:
+    needs: PipelineCI
     runs-on: ubuntu-latest
     steps:
       - name: Install Docker Compose CLI to enable commands on AWS ECS (DEV)
