@@ -10,6 +10,9 @@ read -r -p "Type a tag to Rollback:" tag
 
 if [[ $tag =~ v0.0.[0-9]*-trunk\.0 ]]; then
     if [[ $tags =~ .*$tag* ]]; then
+        echo -e "\ngit push origin --delete feature/rollback"
+        git push origin --delete feature/rollback
+
         echo -e "\ngit checkout $tag"
         git checkout $tag
 
