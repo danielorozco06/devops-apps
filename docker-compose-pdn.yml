@@ -16,13 +16,6 @@ services: # Define the services/containers to be run
         max: 3 #Max: This is the maximum number of instances that your autoscaling group can have. 
         cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
         # mem: - mutualy exlusive with cpu
-    logging: #AWS CloudWatch Logs to collect logs from all containers
-      driver: awslogs
-      options:
-        awslogs-region: us-east-1
-        awslogs-group: devops-apps
-        awslogs-stream: database
-        awslogs-create-group: "true" #automatically create the log group as needed
 
   angular: # name of the first service
     build: frontend # specify the directory of the Dockerfile
@@ -40,13 +33,6 @@ services: # Define the services/containers to be run
         max: 2 #Max: This is the maximum number of instances that your autoscaling group can have. 
         cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
         # mem: - mutualy exlusive with cpu
-    logging: #AWS CloudWatch Logs to collect logs from all containers
-      driver: awslogs
-      options:
-        awslogs-region: us-east-1
-        awslogs-group: devops-apps
-        awslogs-stream: angular
-        awslogs-create-group: "true" #automatically create the log group as needed
 
   express: #name of the second service
     build: backend # specify the directory of the Dockerfile
@@ -68,10 +54,3 @@ services: # Define the services/containers to be run
         max: 2 #Max: This is the maximum number of instances that your autoscaling group can have. 
         cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
         # mem: - mutualy exlusive with cpu
-    logging: #AWS CloudWatch Logs to collect logs from all containers
-      driver: awslogs
-      options:
-        awslogs-region: us-east-1
-        awslogs-group: devops-apps
-        awslogs-stream: express
-        awslogs-create-group: "true" #automatically create the log group as needed
