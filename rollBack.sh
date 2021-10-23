@@ -10,7 +10,7 @@ read -r -p "Type a tag to Rollback:" tag
 
 if [[ $tag =~ v0.0.[0-9]*-trunk\.0 ]]; then
     if [[ $tags =~ .*$tag* ]]; then
-        echo -e "\nRealizando Rollback a $tag"
+        echo -e "\nRealizando Rollback a $tag\n"
         git checkout -b $tag
         git diff trunk > diff.patch
         git checkout trunk
