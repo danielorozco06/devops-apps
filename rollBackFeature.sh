@@ -16,6 +16,9 @@ if [[ $tag =~ v0.0.[0-9]*-trunk\.0 ]]; then
         echo -e "\ngit diff trunk > diff.patch"
         git diff trunk > diff.patch
 
+        echo -e "\ngit checkout trunk"
+        git checkout trunk    
+
         echo -e "\ngit checkout -b feature/rollback"
         git checkout -b feature/rollback
 
