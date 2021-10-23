@@ -16,6 +16,11 @@ services: # Define the services/containers to be run
         max: 3 #Max: This is the maximum number of instances that your autoscaling group can have. 
         cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
         # mem: - mutualy exlusive with cpu
+    logging: #AWS CloudWatch Logs to collect logs from all containers
+      driver-opts:
+        awslogs-region: us-east-1
+        awslogs-group: devops-apps
+        awslogs-stream: database
 
   angular: # name of the first service
     build: frontend # specify the directory of the Dockerfile
@@ -24,16 +29,21 @@ services: # Define the services/containers to be run
     ports:
       - "4200:4200" # specify port forewarding
     deploy:
-      resources:
+      resources: #Set resource limits that will get translated to Fargate task size values
         limits:
           cpus: '0.25'
           memory: 512M
       x-aws-autoscaling: #Set a CPU percent target
         min: 1 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
-        max: 1 #Max: This is the maximum number of instances that your autoscaling group can have. 
+        max: 2 #Max: This is the maximum number of instances that your autoscaling group can have. 
         cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
         # mem: - mutualy exlusive with cpu
-  
+    logging: #AWS CloudWatch Logs to collect logs from all containers
+      driver-opts:
+        awslogs-region: us-east-1
+        awslogs-group: devops-apps
+        awslogs-stream: angular
+
   express: #name of the second service
     build: backend # specify the directory of the Dockerfile
     image: danoro06/devops-backend:pdn #Name of the image created
@@ -45,12 +55,17 @@ services: # Define the services/containers to be run
     links:
       - database
     deploy:
-      resources:
+      resources: #Set resource limits that will get translated to Fargate task size values
         limits:
           cpus: '0.25'
           memory: 1024M
       x-aws-autoscaling: #Set a CPU percent target
         min: 1 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
-        max: 1 #Max: This is the maximum number of instances that your autoscaling group can have. 
+        max: 2 #Max: This is the maximum number of instances that your autoscaling group can have. 
         cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
         # mem: - mutualy exlusive with cpu
+    logging: #AWS CloudWatch Logs to collect logs from all containers
+      driver-opts:
+        awslogs-region: us-east-1
+        awslogs-group: devops-apps
+        awslogs-stream: express
