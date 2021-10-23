@@ -1,5 +1,6 @@
 version: '2' # specify docker-compose version
 
+# x-aws-loadbalancer: "loadBalFixeddanoro06"
 services: # Define the services/containers to be run
   database: # name of the third service
     image: mongo # specify image to build container from
