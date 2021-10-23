@@ -1,6 +1,5 @@
 version: '2' # specify docker-compose version
 
-# x-aws-loadbalancer: "loadBalFixeddanoro06"
 services: # Define the services/containers to be run
   database: # name of the third service
     image: mongo # specify image to build container from
@@ -11,12 +10,12 @@ services: # Define the services/containers to be run
       resources: #Set resource limits that will get translated to Fargate task size values
         limits:
           cpus: '0.25'
-          memory: 500M
-        x-aws-autoscaling: #Set a CPU percent target
-          min: 2 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
-          max: 3 #Max: This is the maximum number of instances that your autoscaling group can have. 
-          cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
-          # mem: - mutualy exlusive with cpu
+          memory: 512M
+      x-aws-autoscaling: #Set a CPU percent target
+        min: 2 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
+        max: 3 #Max: This is the maximum number of instances that your autoscaling group can have. 
+        cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
+        # mem: - mutualy exlusive with cpu
 
   angular: # name of the first service
     build: frontend # specify the directory of the Dockerfile
@@ -28,7 +27,12 @@ services: # Define the services/containers to be run
       resources:
         limits:
           cpus: '0.25'
-          memory: 500M
+          memory: 512M
+      x-aws-autoscaling: #Set a CPU percent target
+        min: 1 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
+        max: 1 #Max: This is the maximum number of instances that your autoscaling group can have. 
+        cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
+        # mem: - mutualy exlusive with cpu
   
   express: #name of the second service
     build: backend # specify the directory of the Dockerfile
@@ -44,4 +48,9 @@ services: # Define the services/containers to be run
       resources:
         limits:
           cpus: '0.25'
-          memory: 500M
+          memory: 1024M
+      x-aws-autoscaling: #Set a CPU percent target
+        min: 1 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
+        max: 1 #Max: This is the maximum number of instances that your autoscaling group can have. 
+        cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
+        # mem: - mutualy exlusive with cpu
