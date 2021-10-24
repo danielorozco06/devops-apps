@@ -71,7 +71,7 @@ http://loadBalancerDNS:4200/user
 3. Publish the feature branch: `git push -u origin feature/branchName`
 4. A GitHub action workflow starts to create image, publish in Docker Hub (image tag DEV) and deploy on AWS account (DEV). Workflow in file `.github/workflows/pipeline_CICD_Dev.yml`
 
-### AWS ECS DEV account
+### AWS ECS PDN account
 1. Create a Pull Request on GitHub to merge `feature/branchName` to `trunk`
 2. A GitHub action workflow starts to create image, publish in Docker Hub (image tag PDN) and deploy on AWS account (PDN). Workflow in file `.github/workflows/pipeline_CICD_Pdn.yml`
 
