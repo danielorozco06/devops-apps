@@ -12,8 +12,8 @@ services: # Define the services/containers to be run
           cpus: '0.25'
           memory: 512M
       x-aws-autoscaling: #Set a CPU percent target
-        min: 2 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
-        max: 3 #Max: This is the maximum number of instances that your autoscaling group can have. 
+        min: 1 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
+        max: 2 #Max: This is the maximum number of instances that your autoscaling group can have. 
         cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
         # mem: - mutualy exlusive with cpu
 
@@ -48,7 +48,7 @@ services: # Define the services/containers to be run
       resources: #Set resource limits that will get translated to Fargate task size values
         limits:
           cpus: '0.25'
-          memory: 1024M
+          memory: 512M
       x-aws-autoscaling: #Set a CPU percent target
         min: 1 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
         max: 2 #Max: This is the maximum number of instances that your autoscaling group can have. 
