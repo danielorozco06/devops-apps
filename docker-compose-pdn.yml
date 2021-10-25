@@ -11,11 +11,6 @@ services: # Define the services/containers to be run
         limits:
           cpus: '0.25'
           memory: 512M
-      x-aws-autoscaling: #Set a CPU percent target
-        min: 1 #Min: This is the minimum number of instances that have to be there in your Autoscaling Group at all times
-        max: 2 #Max: This is the maximum number of instances that your autoscaling group can have. 
-        cpu: 75  #cpu or memory to define target metric, expressed as resource usage percent.
-        # mem: - mutualy exlusive with cpu
 
   angular: # name of the first service
     build: frontend # specify the directory of the Dockerfile
