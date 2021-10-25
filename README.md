@@ -23,7 +23,7 @@ This code will add, upadate and delete data to mongodb using express rest APIS a
 2. Enable base URI with localhost in file `frontend/src/app/user.service.ts`
    ![baseURI](/images/baseURI.png "baseURI")
 ### Run
-1. Start docker sevice: `sudo service docker start`
+1. Start docker sevice:  `sudo service docker start`
 2. Select local context: `docker context use default`
 3. Build images: `docker compose build`
 4. Execute containers: `docker compose up`
